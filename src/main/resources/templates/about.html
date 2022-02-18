@@ -1,12 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/style.css" />
+
+    <a th:href="@{/}">home</a>
+
     <title>About</title>
 
 </head>
 <body>
 <h1>Dit is een about me pagina</h1>
+<div class="row1">
+
+    <div class="row1content">
+        <ol>
+            <li><p th:text="${naam}"></p></li>
+            <li><p th:text="${adres}"></p></li>
+            <li><p th:text="${stad}"></p></li>
+
+        </ol>
+        <p th:text="|Ik ben ${naam} en woon in ${adres}, te ${stad}|"></p>
+        <!-- thpargraaf waar ik een thymeleaf attribuut wilt gebruiken die komt van u model-->
+    </div>
+
+</div>
 
 </body>
 </html>

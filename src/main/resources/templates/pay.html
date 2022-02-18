@@ -7,19 +7,10 @@
           th:href="@{/css/style.css}" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/style.css}" href="/css/bootstrap.min.css" />
-    <a th:href="@{/}">home</a> <a th:href="@{/venuedetails}">venuedetails</a> <a th:href="@{/about}">about</a>
-
-    <title>Home</title>
+    <title>Pay</title>
 </head>
 <body>
-<h1>Hello</h1>
-<div class="row1">
-    <div class="row1content">
-       </p> <p th:text="${myCalculatedValue}"></p>
-        <!-- th pargraaf waar ik een thymeleaf attribuut wilt gebruiken die komt van u model -->
-
-    </div>
-</div>
-
+<p th:text="|De datum van vandaag is ${date}|"></p>
+<p th:text="|De betaaldatum is ${date30}|"></p>
 </body>
 </html>
