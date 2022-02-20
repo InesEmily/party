@@ -12,14 +12,24 @@
     <title>Home</title>
 </head>
 <body>
-<h1>Hello</h1>
+<header>
+    <h1>Let's Party!</h1>
+    <div class="blok"><a th:href="@{/}">home</a></div>
+    <div class="blok1"><a th:href="@{/venuedetails}">venuedetails</a></div>
+    <div class="blok2"><a th:href="@{/about}">about</a></div>
+    <div class="blok2"><a th:href="@{/pay}">pay</a></div>
+    <div class="blok2"><a th:href="@{/greetingNewClient}">greetingNewClient</a> </div>
+    <div class="blok2"><a th:href="@{/showSecretCode}">showSecretCode</a> </div>
+</header>
+<main>
+<h2>Hello</h2>
 <div class="row1">
     <div class="row1content">
        </p> <p th:text="${myCalculatedValue}"></p>
         <!-- th pargraaf waar ik een thymeleaf attribuut wilt gebruiken die komt van u model -->
-
     </div>
-</div>
 
+</div>
+</main>
 </body>
 </html>
