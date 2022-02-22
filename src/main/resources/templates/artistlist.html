@@ -7,16 +7,25 @@
           th:href="@{/css/style.css}" href="/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/style.css}" href="/css/bootstrap.min.css"/>
-    <title>Pay</title>
+    <title>venueList</title>
 </head>
 <body>
 <header>
-    <div th:replace="fragments/header :: header">Header</div>
 </header>
+<div th:replace="fragments/header :: header">Header</div>
 <main>
-    <h2 th:text="${weekday}"></h2>
-    <p th:text="|De datum van vandaag is ${date}|"></p>
-    <p th:text="|De betaaldatum is ${date30}|"></p>
+    <h2>Artist</h2>
+    <div class="container">
+        <div class="Kolom1">
+
+            <div class="blok2" th:each="artist: ${artists}">
+                <a th:href="@{|/artistdetails/${artist.id}|}"
+                   th:text="${artist.getArtistName()}">artist name</a>
+            </div>
+        </div>
+    </div>
+
 </main>
+
 </body>
 </html>

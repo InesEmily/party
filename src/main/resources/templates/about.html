@@ -11,9 +11,9 @@
 
 </head>
 <body>
-<div class="blok"><a th:href="@{/}">home</a></div> <div class="blok1"><a th:href="@{/venuedetails}">venuedetails</a></div> <div class="blok2"><a th:href="@{/about}">about</a></div>
+<div th:replace="fragments/header :: header">Header</div>
 <main>
-<h1>Dit is een about me pagina</h1>
+<h2>Dit is een about me pagina</h2>
 <div class="row1">
 
     <div class="row1content">
