@@ -1,5 +1,6 @@
 body{
     background: #6A8E80;
+    font-family: Bahnschrift, sans-serif;
 }
 main{
     color:#53676C;
@@ -49,4 +50,28 @@ a{
 .Kolom2{
     margin-left: 30px;
     display: inline-block;
+}
+.blok3{
+    display: block;
+    background: #EDC6CF;
+    margin: 10px auto;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+    text-align: center;
+    align-content: center;
+}
+.blok4{
+    display: inline-block;
+}
+
+.blok5{
+    display: inline-block;
+    background: #EDC6CF;
+    margin-right: 5px;
+    padding: 5px;
+    text-align: center;
+}
+.activeFilter{
+    background: red ;
 }

@@ -16,8 +16,8 @@ public class VenueController {
     private VenueRepository venueRepository;
 
     @GetMapping({"/venuedetails/{id}", "/venuedetails"})
-    public String venuedetails(Model model, @PathVariable (required = false) Integer id) {
-        if(id == null) return "venuedetails";
+    public String venuedetails(Model model, @PathVariable(required = false) Integer id) {
+        if (id == null) return "venuedetails";
 
         Optional<Venue> venueFromDb = venueRepository.findById(id);
 
@@ -29,8 +29,34 @@ public class VenueController {
 
     @GetMapping({"/venueList"})
     public String venueList(Model model) {
-        final Iterable< Venue> allVenues = venueRepository.findAll();
-        model.addAttribute("venues",allVenues);
+        final Iterable<Venue> allVenues = venueRepository.findAll();
+        model.addAttribute("venues", allVenues);
         return "venuelist";
     }
+
+    @GetMapping({"/venuelist/outdoor/{filter}", "/venuelist/outdoor"})
+    public String venuelistOutdoorYes(Model model, @PathVariable(required = false) String filter) {
+        if (filter == null) {
+            Iterable<Venue> allVenues = venueRepository.findAll();
+            model.addAttribute("venues", allVenues);
+            return "venuelist";
+        }
+        if (filter.equals("yes")) {
+            Iterable<Venue> allVenues = venueRepository.findByOutdoor(true);
+            model.addAttribute("venues", allVenues);
+            return "venuelist";
+        } else if (filter.equals("no")) {
+            Iterable<Venue> allVenues = venueRepository.findByOutdoor(false);
+            model.addAttribute("venues", allVenues);
+            return "venuelist";
+        } else if (filter.equals("all")) {
+            Iterable<Venue> allVenues = venueRepository.findAll();
+            model.addAttribute("venues", allVenues);
+        } else {
+            Iterable<Venue> allVenues = venueRepository.findAll();
+            model.addAttribute("venues", allVenues);
+        }
+        return "venuelist";
+    }
+
 }
