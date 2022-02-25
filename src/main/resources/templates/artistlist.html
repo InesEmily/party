@@ -17,7 +17,6 @@
     <h2>Artist</h2>
     <div class="container">
         <div class="Kolom1">
-
             <div class="blok3" th:each="artist: ${artists}">
                 <a th:href="@{|/artistdetails/${artist.id}|}"
                    th:text="${artist.getArtistName()}">artist name</a>
