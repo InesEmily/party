@@ -24,6 +24,8 @@ public class ArtistController {
 
         if (artistFromDb.isPresent()) {
             model.addAttribute("artist", artistFromDb.get());
+            long maxlist = artistRepository.count();
+            model.addAttribute("maxlist",maxlist);
         }
         return "artistdetails";
     }

@@ -30,6 +30,11 @@
             </div>
 <!-- hier test je of venue niet gelijk is aan null ( is er een waarde aanwezig) -->
             <div class="Kolom2" th:if="${venue}">
+                <a class="prevButton" th:if="${venue.getId}>1" th:href="@{${venue.getId()-1}}" th:text="'<'"></a>
+                <a class="prevButton" th:if="${venue.getId}==1" th:href="@{${maxvenues}}" th:text="'<'"></a>
+
+                <a class="NextButton" th:if="${venue.getId}<${maxvenues}" th:href="@{${venue.getId()+1}}" th:text="'>'"></a>
+                <a class="NextButton" th:if="${venue.getId}==${maxvenues}" th:href="@{1}" th:text="'>'"></a>
 
                 <h2 th:text="${venue.getVenueName()}">venuedetails</h2>
                 <a th:href="${venue.getLinkMoreInfo()}"><p th:text="${venue.getLinkMoreInfo()}"></p></a>

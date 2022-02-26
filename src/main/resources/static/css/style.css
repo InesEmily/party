@@ -75,3 +75,19 @@ a{
 .activeFilter{
     background: red ;
 }
+.prevButton{
+    display: inline-block;
+    background: #EDC6CF;
+    margin-right: 5px;
+    padding: 5px;
+    text-align: center;
+    float: left;
+}
+.NextButton{
+    display: inline-block;
+    background: #EDC6CF;
+    margin-right: 5px;
+    padding: 5px;
+    text-align: center;
+    float: right;
+}

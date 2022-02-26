@@ -20,6 +20,11 @@
         <div class="row">
             <!-- hier test je of venue niet gelijk is aan null ( is er een waarde aanwezig) -->
             <div class="Kolom2" th:if="${artist}">
+                <a class="prevButton" th:if="${artist.getId}>1" th:href="@{${artist.getId()-1}}" th:text="'<'"></a>
+                <a class="prevButton" th:if="${artist.getId}==1" th:href="@{${maxlist}}" th:text="'<'"></a>
+
+                <a class="NextButton" th:if="${artist.getId}<${maxlist}" th:href="@{${artist.getId()+1}}" th:text="'>'"></a>
+                <a class="NextButton" th:if="${artist.getId}==${maxlist}" th:href="@{1}" th:text="'>'"></a>
 
                 <h2 th:text="${artist.getArtistName()}"></h2>
                 <a th:href="${artist.getLinkMoreInfo()}"><p th:text="${artist.getLinkMoreInfo()}"></p></a>

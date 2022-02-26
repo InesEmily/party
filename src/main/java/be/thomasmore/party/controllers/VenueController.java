@@ -23,6 +23,8 @@ public class VenueController {
 
         if (venueFromDb.isPresent()) {
             model.addAttribute("venue", venueFromDb.get());
+            long maxvenues = venueRepository.count();
+            model.addAttribute("maxvenues",maxvenues);
         }
         return "venuedetails";
     }
