@@ -20,11 +20,11 @@ public class ArtistController {
     public String artistdetails(Model model, @PathVariable (required = false) Integer id) {
         if(id == null) return "artistdetails";
         // comment
-<<<<<<< HEAD
+
         //nog is proberen
-=======
+
         //proberen
->>>>>>> bundel_deploy
+
 
         Optional<Artist> artistFromDb = artistRepository.findById(id);
 
