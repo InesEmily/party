@@ -7,16 +7,11 @@
           th:href="@{/css/style.css}" href="/css/style.css"/>
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/style.css}" href="/css/bootstrap.min.css"/>
-    <title>Pay</title>
+    <title>Error</title>
 </head>
 <body>
-<header>
-    <div th:replace="fragments/header :: header">Header</div>
-</header>
-<main>
-    <h2 th:text="${weekday}"></h2>
-    <p th:text="|De datum van vandaag is ${date}|"></p>
-    <p th:text="|De betaaldatum is ${date30}|"></p>
-</main>
+<div th:replace="fragments/header :: header">Header</div>
+<h2>Oeps... Er is iets misgegaan</h2>
+
 </body>
 </html>

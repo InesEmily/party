@@ -18,14 +18,7 @@ public class ClientController {
 
     private ClientRepository clientRepository;
 
-    @GetMapping({"/client"})
-    public String client(Model model) {
-        Optional<Client> clientFromDb = clientRepository.findById(1);
-        if (clientFromDb.isPresent()) {
-            model.addAttribute("client", clientFromDb.get());
-        }
-        return "client";
-    }
+
 
     public String generateClientCode(Client client) {
         String eersteLetter = client.getName().substring(0, 2);
@@ -37,6 +30,15 @@ public class ClientController {
         int getal = r.nextInt(1, Integer.parseInt(geboortejaar));
         String code = eersteLetter + laatsteLetter + birthday + getal;
         return code;
+    }
+    @GetMapping({"/client"})
+    public String client(Model model) {
+        Optional<Client> clientFromDb = clientRepository.findById(1);
+        if (clientFromDb.isPresent()) {
+            model.addAttribute("client", clientFromDb.get());
+        }
+
+        return "client";
     }
 
     @GetMapping({"/showSecretCode"})
@@ -58,7 +60,7 @@ public class ClientController {
 
     @GetMapping({"/greetingNewClient"})
     public String greetingNewClient(Model model) {
-        Optional<Client> clientFromDb = clientRepository.findById((1));
+        Optional<Client> clientFromDb = clientRepository.findById((1)); // vinden we het client op ID
         String message = "";
         if (clientFromDb.isPresent()) {
 
@@ -72,7 +74,7 @@ public class ClientController {
             }
 
             if (clientFromDb.get().getGender().equals("F")) {
-                message += "mevrouw " + clientFromDb.get().getName();
+                message += "mevrouw " + clientFromDb.get().getName();// client van database halen en dan pas de naam gaan halen
             } else {
                 message += "meneer " + clientFromDb.get().getName();
             }
