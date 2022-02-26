@@ -20,6 +20,7 @@ public class ArtistController {
     public String artistdetails(Model model, @PathVariable (required = false) Integer id) {
         if(id == null) return "artistdetails";
         // comment
+        //proberen
 
         Optional<Artist> artistFromDb = artistRepository.findById(id);
 
