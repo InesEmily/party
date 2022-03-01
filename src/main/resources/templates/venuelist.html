@@ -15,25 +15,17 @@
 <div th:replace="fragments/header :: header">Header</div>
 <main>
     <h2>Venues</h2>
-    <div class="blok4">outdoor</div>
-    <div class="blok2"><a th:href="@{/venuelist/outdoor/yes}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/outdoor/yes' ? 'activeFilter':''}">yes</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/outdoor/no}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/outdoor/no' ? 'activeFilter':''}">no</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/outdoor/all}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/outdoor/all' ? 'activeFilter':''}">all</a></div>
-    <div class="blok4">indoor</div>
-    <div class="blok2"><a th:href="@{/venuelist/indoor/yes}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/indoor/yes' ? 'activeFilter':''}">yes</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/indoor/no}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/indoor/no' ? 'activeFilter':''}">no</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/indoor/all}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/indoor/all' ? 'activeFilter':''}">all</a></div>
-    <div class="blok4">size:</div>
-    <div class="blok2"><a th:href="@{/venuelist/capacity/S}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/capacity/S' ? 'activeFilter':''}">S</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/capacity/M}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/capacity/M' ? 'activeFilter':''}">M</a></div>
-    <div class="blok2"><a th:href="@{/venuelist/capacity/L}" th:classappend="${#httpServletRequest.getRequestURI() == '/venuelist/capacity/L' ? 'activeFilter':''}">L</a></div>
 
-    <div class="container">
-        <div class="Kolom1">
+    <div class="container"><a class="blok2" th:if="${!showFilter}" th:href="@{|/venuelist/filter|}" th:text="filter">filter</a>
+        <a class="blok2" th:if="${showFilter}" th:href="@{|/venuelist|}" th:text="'-'">filter</a>
+        <div  th:if="${showFilter}" th:text="|filters komen hier|" ></div>
 
-            <div class="blok3" th:each="venue: ${venues}">
-                <a th:href="@{|/venuedetails/${venue.id}|}"
-                   th:text="${venue.getVenueName()}">venue name</a>
+        <div class="row">
+            <div class="Kolom1">
+                <div class="blok3" th:each="venue : ${venues}">
+                    <a th:href="@{|/venuedetails/${venue.id}|}" th:text="${venue.getVenueName()}">venue Name</a>
+                </div>
+                <div class="blok3"><a th:href="@{/venuedetails}">venuedetails</a></div>
             </div>
         </div>
     </div>
