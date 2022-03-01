@@ -33,6 +33,8 @@ public class VenueController {
     public String venuelist(Model model, @PathVariable(required = false) String filter) {
         final Iterable<Venue> allVenues = venueRepository.findAll();
         Boolean showFilter = false;
+        long countvenues = venueRepository.count();
+        model.addAttribute("maxvenues",countvenues);
         if (filter == null) {
             model.addAttribute("showFilter", showFilter);
             model.addAttribute("venues", allVenues);
@@ -43,8 +45,10 @@ public class VenueController {
             model.addAttribute("showFilter", showFilter);
             return "venuelist";
         }
+
         model.addAttribute("showFilter", showFilter);
         model.addAttribute("venues", allVenues);
+
         return "venuelist";
     }
 
