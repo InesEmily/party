@@ -2,6 +2,8 @@ package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.VenueRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
+    private Logger logger = LoggerFactory.getLogger(VenueController.class);
 
     @GetMapping({"/venuedetails/{id}", "/venuedetails"})
     public String venuedetails(Model model, @PathVariable(required = false) Integer id) {
@@ -31,6 +34,7 @@ public class VenueController {
 
     @GetMapping({"/venuelist", "/venuelist/{filter}"})
     public String venuelist(Model model, @PathVariable(required = false) String filter) {
+        logger.info("venueListWithFilter");
         final Iterable<Venue> allVenues = venueRepository.findAll();
         Boolean showFilter = false;
         long countvenues = venueRepository.count();
