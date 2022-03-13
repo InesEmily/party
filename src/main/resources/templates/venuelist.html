@@ -18,17 +18,24 @@
 
     <div class="container"><a class="blok2" th:if="${!showFilter}" th:href="@{|/venuelist/filter|}" th:text="filter">filter</a>
         <a class="blok2" th:if="${showFilter}" th:href="@{|/venuelist|}" th:text="'-'">filter</a>
-        <div th:if="${showFilter}" th:text="|${maxvenues}|"></div>
+        <div th:if="${showFilter}" th:text="|${nrofVenues}|"></div>
         <h2>Capacity</h2>
         <div th:if="${showFilter}" class="filters"><a class="buttonLook filterButton" th:href="@{/venuelist}">--</a>
             <form>
                 <h3>capacity</h3>
+
                 <div class="onefilter">
                     <input type="submit" value="search" class="buttonLook filterButton"></input>
                 </div>
                 <div class="onefilter">
                     <label for="minCapacity" class="filtername">min</label>
-                    <input type="number" id="minCapacity" name="minCapacity" value="0" step="50">persons
+                    <input type="number" id="minCapacity" name="minCapacity" th:value="${minCapacity}"
+                           step="50">persons
+                </div>
+                <div class="onefilter">
+                    <label for="maxCapacity" class="filtername">max</label>
+                    <input type="number" id="maxCapacity" name="maxCapacity" th:value="${maxCapacity}" value="0"
+                           step="50">persons
                 </div>
             </form>
         </div>
@@ -38,7 +45,6 @@
                 <div class="blok3" th:each="venue : ${venues}">
                     <a th:href="@{|/venuedetails/${venue.id}|}" th:text="${venue.getVenueName()}">venue Name</a>
                 </div>
-                <div class="blok3"><a th:href="@{/venuedetails}">venuedetails</a></div>
             </div>
         </div>
     </div>
