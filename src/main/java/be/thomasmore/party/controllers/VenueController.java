@@ -45,7 +45,7 @@ public class VenueController {
 
         } else  {
             logger.info(String.format("venueListWithFilter --=min %d", minCapacity));
-
+//wat we hier doen is kijken wat op her formulier werd ingevuld
             if (minCapacity != null) {
                 if (maxCapacity != null) {
                     venues = venueRepository.findByCapacityBetween(minCapacity, maxCapacity);

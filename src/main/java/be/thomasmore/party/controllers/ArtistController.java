@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -37,9 +39,14 @@ public class ArtistController {
     }
 
     @GetMapping({"/artistlist"})
-    public String artistList(Model model) {
-        final Iterable< Artist> allartists = artistRepository.findAll();
-        model.addAttribute("artists",allartists);
+    public String artistList(Model model, @RequestParam (required = false)String keyword) {
+        List<Artist> artists;
+        if (keyword!= null){
+            artists = artistRepository.findByArtistNameContainingIgnoreCase(keyword);
+        }else {
+            artists =  artistRepository.findAllBy();
+        }
+        model.addAttribute("artists",artists);
         return "artistlist";
     }
 
