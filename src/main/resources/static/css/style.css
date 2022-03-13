@@ -91,3 +91,13 @@ a{
     text-align: center;
     float: right;
 }
+.button.button{
+    display: block;
+    background: #EDC6CF;
+    margin: 10px auto;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+    text-align: center;
+    align-content: center;
+}
