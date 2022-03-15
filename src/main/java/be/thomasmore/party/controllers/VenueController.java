@@ -1,6 +1,8 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Party;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class VenueController {
     @Autowired
     private VenueRepository venueRepository;
+    @Autowired
+    private PartyRepository partyRepository;
 
     @GetMapping({"/venuedetails/{id}", "/venuedetails"})
     public String venuedetails(Model model, @PathVariable(required = false) Integer id) {
@@ -25,6 +29,9 @@ public class VenueController {
             model.addAttribute("venue", venueFromDb.get());
             long maxvenues = venueRepository.count();
             model.addAttribute("maxvenues",maxvenues);
+            Iterable<Party> allparties =partyRepository.findByVenue(venueFromDb);
+            model.addAttribute("allparties",allparties);
+
         }
         return "venuedetails";
     }

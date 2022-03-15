@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/bootstrap.min.css"/>
+    <title>Venue</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">Header</div>
+
+<main>
+    <a class="prevButton" th:if="${party.getId}>1" th:href="@{${party.getId()-1}}" th:text="'<'"></a>
+    <a class="prevButton" th:if="${party.getId}==1" th:href="@{${maxvenues}}" th:text="'<'"></a>
+
+    <a class="NextButton" th:if="${party.getId}<${maxvenues}" th:href="@{${party.getId()+1}}"
+       th:text="'>'"></a>
+    <a class="NextButton" th:if="${party.getId}==${maxvenues}" th:href="@{1}" th:text="'>'"></a>
+    <h1 th:text="${party.getName()}"></h1>
+    <h3 th:text="${party.getDate()}"></h3>
+    <a th:href="@{|/venuedetails/${party.getVenue().getId()}|}"><p
+            th:text="${party.getVenue().getVenueName()}"></p></a>
+
+    <div class="container">
+        <div class="row" th:if="${party}">
+            <div class="Kolom1" th:if="${party.getPriceInEur() !=null and party.getExtraInfo() != null }">
+                <p>where</p>
+                <p>price:</p>
+                <p>doors:</p>
+                <p>extra info:</p>
+            </div>
+            <div class="Kolom1" th:if="${party.getPriceInEur() ==null }">
+                <p>Free party!</p>
+                <p>doors:</p>
+            </div>
+            <div class="Kolom2" th:if="${party.getPricePresaleInEur() != null and party.getExtraInfo() != null}">
+                <p th:text="|${party.getVenue().getCity()} (${party.getVenue().getDistanceFromPublicTransportInKm()} km from public transport)|"></p>
+                <p th:text="|${party.getPricePresaleInEur()}&euro; (presale) / ${party.getPriceInEur()}&euro; |">
+                    venuedetails</p>
+                <p th:text="${party.getDoors()}"></p>
+                <p th:text="${party.getExtraInfo()}"></p>
+            </div>
+            <div class="Kolom2" th:if="${party.getPriceInEur() == null}">
+                <p th:text="${party.getDoors()}"></p>
+            </div>
+            <!--            <div class="kolom2" th:unless="${party}">-->
+            <!--                <p>no venue chosen</p>-->
+            <!--            </div>-->
+        </div>
+    </div>
+</main>
+</body>
+</html>

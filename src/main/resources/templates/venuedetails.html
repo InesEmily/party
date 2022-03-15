@@ -45,7 +45,21 @@
                 <p th:text="${venue.isFreeParkingAvailable()? 'yes': 'no'}"></p>
                 <p th:text="${venue.getCity()}">venuedetails</p>
                 <p th:text="|${venue.getDistanceFromPublicTransportInKm()} km|">venuedetails</p>
+
             </div>
+            <div class="row">
+
+            <div class="blok3" th:each="party: ${allparties}">
+                <a th:href="@{|/partydetails/${party.getId()}|}"
+                   th:text="${party.getName()}">party name</a>
+            </div>
+            </div>
+
+
+
+
+
+
             <div class="kolom2" th:unless="${venue}">
                 <p>no venue chosen</p>
             </div>
