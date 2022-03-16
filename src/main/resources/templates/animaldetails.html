@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/bootstrap.min.css"/>
+    <title>Venue</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">Header</div>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="Kolom1">
+                <p>city</p>
+                <p>bio</p>
+            </div>
+            <div class="Kolom2" th:if="${animal}">
+                <a class="prevButton" th:if="${animal.getId()}>1" th:href="@{${animal.getId()-1}}" th:text="'<'"></a>
+                <a class="prevButton" th:if="${animal.getId}==1" th:href="@{${maxlist}}" th:text="'<'"></a>
+
+                <a class="NextButton" th:if="${animal.getId}<${maxlist}" th:href="@{${animal.getId()+1}}"
+                   th:text="'>'"></a>
+                <a class="NextButton" th:if="${animal.getId}==${maxlist}" th:href="@{1}" th:text="'>'"></a>
+
+                <h2 th:text="${animal.getName()}">animaldetails</h2>
+                <p th:text="${animal.getCity()}"></p>
+                <p th:text="${animal.getBio()}">animaldetails</p>
+            </div>
+        </div>
+        <div class="row"th:if="${!animal.getParties().isEmpty()}">
+            <div class="Kolom1" >
+                <h2 th:text="|going to|">Who goes</h2>
+            </div>
+            <div class="blok3" th:each="party: ${animal.getParties()}">
+                <a th:href="@{|/partydetails/${party.getId()}|}"
+                   th:text="${party.getName()}">party name</a>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

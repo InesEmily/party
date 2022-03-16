@@ -48,18 +48,14 @@
 
             </div>
             <div class="row">
-
-            <div class="blok3" th:each="party: ${allparties}">
-                <a th:href="@{|/partydetails/${party.getId()}|}"
-                   th:text="${party.getName()}">party name</a>
+                <div class="Kolom1" >
+                    <h2 th:text="|parties in the ${venue.getVenueName()}|">parties</h2>
+                </div>
+                <div class="blok3" th:each="party: ${allparties}">
+                    <a th:href="@{|/partydetails/${party.getId()}|}"
+                       th:text="${party.getName()}">party name</a>
+                </div>
             </div>
-            </div>
-
-
-
-
-
-
             <div class="kolom2" th:unless="${venue}">
                 <p>no venue chosen</p>
             </div>

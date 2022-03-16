@@ -31,13 +31,23 @@
                 <p th:text="|Genre: ${artist.getGenre()}|">artistdetails</p>
                 <p th:text="|Portfolio :${artist.getPortfolio()}|"> artistdetails</p>
                 <p th:text="|Bio: ${artist.getBio()}|">artistdetails</p>
+            </div>
 
             </div>
             <div class="kolom2" th:unless="${artist}">
                 <p>no artist chosen</p>
             </div>
+                <div class="row"th:if="${!artist.getParties().isEmpty()}">
+                    <div class="Kolom1" >
+                        <h2 th:text="|parties by ${artist.getArtistName()}|">parties</h2>
+                    </div>
+                    <div class="blok3" th:each="party: ${artist.getParties()}">
+                        <a th:href="@{|/partydetails/${party.getId()}|}"
+                           th:text="${party.getName()}">party name</a>
+                    </div>
+                </div>
+
         </div>
-    </div>
 
 </main>
 <footer>copyright ThomasMore</footer>

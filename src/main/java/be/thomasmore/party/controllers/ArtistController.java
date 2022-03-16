@@ -19,13 +19,6 @@ public class ArtistController {
     @GetMapping({"/artistdetails/{id}", "/artistdetails"})
     public String artistdetails(Model model, @PathVariable (required = false) Integer id) {
         if(id == null) return "artistdetails";
-        // comment
-
-        //nog is proberen
-
-        //proberen
-
-
         Optional<Artist> artistFromDb = artistRepository.findById(id);
 
         if (artistFromDb.isPresent()) {

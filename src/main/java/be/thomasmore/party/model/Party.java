@@ -95,4 +95,15 @@ public class Party {
     public void setArtists(Collection<Artist> artists) {
         this.artists = artists;
     }
+
+    @ManyToMany(mappedBy = "parties")
+    private Collection<Animal> animals;
+
+    public Collection<Animal> getAnimals() {
+        return animals;
+    }
+
+    public void setAnimals(Collection<Animal> animals) {
+        this.animals = animals;
+    }
 }
