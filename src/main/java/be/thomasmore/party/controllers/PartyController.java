@@ -41,4 +41,5 @@ public class PartyController {
         }
         return "partydetails";
     }
+
 }
