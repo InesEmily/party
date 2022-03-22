@@ -16,27 +16,28 @@
 
 <main>
     <form th:action="@{|/admin/partyedit/${party.id}|}" th:object="${party}" method="post">
-    <div th:if="${party}">
-        <h2 th:text="*{name}"></h2>
-        <h3 th:text="*{date}"></h3>
-        <a th:href="@{|/venuedetails/${party.getVenue().getId()}|}"><p
-                th:text="${party.getVenue().getVenueName()}"></p></a>
-    </div>
-    <div class="container" th:object="">
+        <div th:if="${party}">
+            <h2 th:text="*{name}"></h2>
+            <h3 th:text="*{date}"></h3>
 
-        <div class="row" th:if="${party}">
-            <div class="Kolom1" th:if="${party.getPriceInEur() !=null and party.getExtraInfo() != null }">
-                <p>name:</p>
-                <p>where</p>
-                <p>price:</p>
-                <p>doors:</p>
-                <p>extra info:</p>
-            </div>
-            <div class="Kolom1" th:if="${party.getPriceInEur() ==null }">
-                <p>Free party!</p>
-                <p>doors:</p>
-            </div>
-            <div class="Kolom2" th:if="${party.getPricePresaleInEur() != null and party.getExtraInfo() != null}">
+            <a th:href="@{|/venuedetails/${party.getVenue().getId()}|}"><p
+                    th:text="${party.getVenue().getVenueName()}"></p></a>
+        </div>
+        <div class="container">
+
+            <div class="row" th:if="${party}">
+                <div class="Kolom1" th:if="${party.getPriceInEur() !=null and party.getExtraInfo() != null }">
+                    <p>name:</p>
+                    <p>where</p>
+                    <p>price:</p>
+                    <p>doors:</p>
+                    <p>extra info:</p>
+                </div>
+                <div class="Kolom1" th:if="${party.getPriceInEur() ==null }">
+                    <p>Free party!</p>
+                    <p>doors:</p>
+                </div>
+                <div class="Kolom2" th:if="${party.getPricePresaleInEur() != null and party.getExtraInfo() != null}">
 
 
                     <label for="partyName" class="filtername"></label>
@@ -47,39 +48,55 @@
 
 
                     <p th:text="|${party.getVenue().getCity()} (${party.getVenue().getDistanceFromPublicTransportInKm()} km from public transport)|"></p>
-                        <label for="partyPrice" class="filtername"></label>
-                        <input type="text" id="partyPrice" name="partyPrice" class="form-control rounded"
-                               th:field="*{priceInEur}" aria-label="Search"
-                               aria-describedby="search-addon"/>
-                        <span class="input-group-text border-0" id="partyPreseale-addon"><i class="fas fa-search"></i></span>
+                    <label for="partyPrice" class="filtername"></label>
+                    <input type="text" id="partyPrice" name="partyPrice" class="form-control rounded"
+                           th:field="*{priceInEur}" aria-label="Search"
+                           aria-describedby="search-addon"/>
+                    <span class="input-group-text border-0" id="partyPreseale-addon"><i
+                            class="fas fa-search"></i></span>
 
 
-                        <label for="partyPresale" class="filtername"></label>
-                        <input type="text" id="partyPresale" name="partyPresale" class="form-control rounded"
-                               th:field="*{pricePresaleInEur}" aria-label="Search"
-                               aria-describedby="search-addon"/>
-                        <span class="input-group-text border-0" id="partyPresale-addon"><i class="fas fa-search"></i></span>
+                    <label for="partyPresale" class="filtername"></label>
+                    <input type="text" id="partyPresale" name="partyPresale" class="form-control rounded"
+                           th:field="*{pricePresaleInEur}" aria-label="Search"
+                           aria-describedby="search-addon"/>
+                    <span class="input-group-text border-0" id="partyPresale-addon"><i class="fas fa-search"></i></span>
 
-                <p th:text="${party.getDoors()}"></p>
+                    <p th:text="${party.getDoors()}"></p>
 
-                        <label for="partyExtraInfo" class="filtername"></label>
-                        <input type="text" id="partyExtraInfo" name="partyExtraInfo" class="form-control rounded"
-                               th:field="*{extraInfo}" aria-label="Search"
-                               aria-describedby="search-addon"/>
-                        <span class="input-group-text border-0" id="partyExtraInfo-addon"><i class="fas fa-search"></i></span>
-
-            </div>
-            <div class="Kolom2" th:if="${party.getPriceInEur() == null}">
-                <p th:text="${party.getDoors()}"></p>
-            </div>
-            <div class="kolom2" th:unless="${party}">
-                <p>no venue chosen</p>
+                    <label for="partyExtraInfo" class="filtername"></label>
+                    <input type="text" id="partyExtraInfo" name="partyExtraInfo" class="form-control rounded"
+                           th:field="*{extraInfo}" aria-label="Search"
+                           aria-describedby="search-addon"/>
+                    <span class="input-group-text border-0" id="partyExtraInfo-addon"><i
+                            class="fas fa-search"></i></span>
+                </div>
+                <div class="infoLineName">
+                    <label for="date" class="infoLineName">date <i>(yyyy-mm-dd</i> </label>
+                    <input id="date" th:field="*{date}" class="infoLineValue">
+                </div>
+                <div class="infoLineName">
+                    <label for="time" class="infoLineName">time <i>(HH:mm)</i> </label>
+                    <input id="time" th:field="*{doors}" class="infoLineValue">
+                </div>
+                <div>
+                    <label for="venuewhere"> venue:</label>
+                    <select id="venuewhere" th:field="*{venue}">
+                        <option th:each="v : ${venues}" th:selected="*{venue}" th:value="${v.getId()}"
+                                th:text="${v.getVenueName()}"></option>
+                    </select>
+                </div>
+                <div class="Kolom2" th:if="${party.getPriceInEur() == null}">
+                    <p th:text="${party.getDoors()}"></p>
+                </div>
+                <div class="kolom2" th:unless="${party}">
+                    <p>no venue chosen</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="blok2"><a th:href="@{|/partydetails/${party.getId()}|}" th:text="|Cancel|"></a></div>
+        <div class="blok2"><a th:href="@{|/partydetails/${party.getId()}|}" th:text="|Cancel|"></a></div>
 
-    <input th:class="blok2" type="submit" value="search" class="buttonLook filterButton"></input>
+        <input th:class="blok2" type="submit" value="search" class="buttonLook filterButton"></input>
     </form>
 </main>
 </body>

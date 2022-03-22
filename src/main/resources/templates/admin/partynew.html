@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/style.css}" href="/css/bootstrap.min.css"/>
+    <title>Venue</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">Header</div>
+
+<main>
+    <form th:action="@{|/admin/partynew|}" th:object="${party}" method="post">
+
+        <div class="container">
+            <div class="row" th:if="${party}">
+                <div class="Kolom2">
+                    <h2 th:text="|NEW PARTY|"></h2>
+                </div>
+                <div class="row">
+
+                    <div class="Kolom2">
+                        <p>
+                            <label for="partyName"></label>
+                            <input type="text" id="partyName" name="partyName" th:field="*{name}"></p>
+                        </p>
+                        <p>
+                            <input id="date" th:field="*{date}">
+                        </p>
+                        <p>
+                            <select id="venuewhere" th:field="*{venue}">
+                                <option th:each=" v : ${venues}"
+                                        th:selected="*{venue}"
+                                        th:value="${v.getId()}"
+                                        th:text="${v.getVenueName()}">
+                                </option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="pricePreSale"></label>
+                            <input type="text" id="pricePreSale" name="pricePreSale" th:field="*{pricePresaleInEur}">
+                        </p>
+                        <p>
+                            <label for="priceSale"></label>
+                            <input type="text" id="priceSale" name="priceSale" th:field="*{priceInEur}">
+                        </p>
+
+                        <p>
+                            <input id="door" th:field="*{doors}">
+                        </p>
+
+                        <p>
+                            <label for="extraInfo"></label>
+                            <input type="text" id="extraInfo" name="extraInfo" th:field="*{extraInfo}">
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="Kolom1">
+                        <div class="onefilter">
+                            <input type="submit" value="create"></a>
+                        </div>
+                        <div class="onefilter">
+                            <a class="blok2" th:href="@{/partylist}" th:text="|cancel|"></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+</main>
+</body>
+</html>
